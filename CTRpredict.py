@@ -22,8 +22,8 @@ def prepare_data_sets(data, test_set):
     test_set['ad area'] = test_set['ad slot width'] * test_set['ad slot height']
     selector = SelectPercentile(f_classif, percentile=10)
     cat_features = ['user-agent', 'ad area', 'ad slot visibility',
-                    'ad exchange', 'ad slot format',
-                    'weekday', 'hour','ad slot id','domain',    
+                    'ad exchange', 'ad slot format', 'ad slot floor price',
+                    'weekday', 'hour','ad slot id','domain',
                     ]
     
     for f in cat_features:
