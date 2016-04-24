@@ -10,7 +10,7 @@ import numpy as np
 
 
 def create_submission(learner, train_data, training_set, test_data):
-        """ This function does trains the model and create a submission file in csv format.
+    """ This function does trains the model and create a submission file in csv format.
 
         Args:
             param1: Training model
@@ -21,7 +21,7 @@ def create_submission(learner, train_data, training_set, test_data):
         Returns:
 	    Void
 
-        """
+    """
     learner.fit(train_data, training_set['click'])
     test_pred = learner.predict_proba(test_data)[:,1]
     pred_frame = pd.DataFrame(data=test_pred,columns=['Prediction'])
@@ -30,7 +30,7 @@ def create_submission(learner, train_data, training_set, test_data):
     pred_frame.to_csv('out.csv')
     
 def prepare_data_sets(data, test_set):
-        """ This function transforms the training data set to a one-hot encoding of 
+    """ This function transforms the training data set to a one-hot encoding of 
 	    the selected features for the training model
 
         Args:
@@ -41,7 +41,7 @@ def prepare_data_sets(data, test_set):
             Training data in transformed format
             Test data in transformed format
 
-        """
+    """
     vec = DictVectorizer()
     data['ad area'] = data['ad slot width'] * data['ad slot height']
     test_set['ad area'] = test_set['ad slot width'] * test_set['ad slot height']
@@ -60,7 +60,7 @@ def prepare_data_sets(data, test_set):
     return selector.transform(train_data), selector.transform(test_data)
 
 def cross_folds(learner, train_data, training_set):
-        """ This function splits the raw training data to train and test sets.
+    """ This function splits the raw training data to train and test sets.
 	    The function also generates ROC's for 5 differnt folds based on the training model
 	    and plots them with an average ROC.
 
@@ -72,7 +72,7 @@ def cross_folds(learner, train_data, training_set):
         Returns:
             Void
 
-        """
+    """
     
     folds = StratifiedKFold(training_set['click'], 5)
     mean_tpr = 0.0
